@@ -1,0 +1,10 @@
+What special values can you get when working with float?
+What options do you have to include a number in a string?
+What are the advantages of using functions?
+What is the structure of a function in Python?
+What is the difference between print(res) and return res? When do you use which?
+What is the difference between foo(1) and foo[1]?
+What does `if __name__ == "__main__":` do?
+How do you make your documentation available for the help(...)-function?
+What is the difference between default arguments, positional arguments and keyword arguments? How do you use them?
+How do you use the data-type Fraction?

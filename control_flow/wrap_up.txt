@@ -1,0 +1,29 @@
+List the Python operators to add, subtract, multiply and the 3 different divisions.
+    +, -, *, /, %, //
+   
+List the comparison operators and their meaning.
+    ==: equals; !=: not equals; <, <=: smaller, equals than; >, >=: larger, equals than
+
+How do you do exponents in Python?
+    **
+
+How do you define imaginary numbers in Python?
+    n*j
+
+Why does Python sometimes write numbers like 1.8665272370064378e-301 and what does this mean?
+    Floating point arithmetic. Only fractions with a prime factor of only 2 can be accurately represented in binary.
+
+How do you output some information to the user?
+    print (stdout), or some GUI (e.g. with Tkinter)
+
+How do you reuse existing code (written by you or others)?
+    Copy + Pasta
+
+What is the structure of a complex conditional statement (including if, else and elif)?
+    if condition:\npass\nelif condition:\npass\nelse:\npass
+
+What is the structure of a while-loop?
+    while condition:\npass
+
+When does a while-loop terminate?
+    When the condition no longer applies, which is checked before every loop
