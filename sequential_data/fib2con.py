@@ -58,4 +58,4 @@ def fib2con(s1, s2, n, lowest_prime):
 
 
 if __name__ == "__main__":
-    print(fib2con(4, 3, 50, lowest_prime_by_sieve)[24])
+    print(fib2con(4, 3, 24, lowest_prime_by_sieve)[-1])
