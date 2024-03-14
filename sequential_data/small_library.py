@@ -7,7 +7,7 @@ Created on Fri Mar  8 14:15:59 2024
 # Functional Programming:
 
 
-def filter_(seq, ignore):
+def filter_(seq, ignore): 
     return list(filter(lambda x: x not in ignore, seq))
 
 
@@ -20,6 +20,10 @@ def find(seq, val):
     )
 
 
+def find_other(seq, val):
+    return list(map(lambda x: x[0], filter(lambda x: x[1]==val, enumerate(seq))))
+
+
 def common(seq1, seq2):
     return list(set(seq1).intersection(seq2))
 
@@ -28,11 +32,11 @@ def common(seq1, seq2):
 
 
 def filter_boring(seq, ignore):
-    return [element for element in seq if element not in ignore]
+    return [element for element in seq if element not in ignore] 
 
 
 def find_boring(seq, val):
-    return [index for index in range(len(seq)) if seq[index] == val]
+    return [index for index, element in enumerate(seq) if element == val]
 
 
 def common_boring(seq1, seq2):
