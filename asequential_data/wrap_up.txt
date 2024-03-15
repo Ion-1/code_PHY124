@@ -1,0 +1,8 @@
+What is a dictionary in Python? How do you define a dict?
+How do you insert, read or change entries in a dict?
+What are the variants to loop over a dictionary?
+What are the different brackets used for: [], (), {}?
+(Hint: They are used to create objects but also to access them.)
+How do you open a file? How do you read its content?
+What is the most efficient way to parse a csv-file?
+What is the basic idea behind objects? What types of attributes do they have?
