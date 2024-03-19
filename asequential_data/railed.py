@@ -29,35 +29,29 @@ def dictify(reader, header_index, zero_value='0', **kwargs):
     return data
 
 
-def main(sorting_function):
-
-    pop_filename = "API_SP.POP.TOTL_DS2_en_csv_v2_3603750.csv"
-    rail_filename = "API_IS.RRS.TOTL.KM_DS2_en_csv_v2_3479929.csv"
+def main(sorting_function, file_1, file_2, key, val1):
 
     current_wdir = os.getcwd()
 
-    pop_path = pop_filename if os.path.isabs(
-        pop_filename) else os.path.join(current_wdir, pop_filename)
-    rail_path = rail_filename if os.path.isabs(
-        rail_filename) else os.path.join(current_wdir, rail_filename)
+    path_1 = file_1 if os.path.isabs(
+        file_1) else os.path.join(current_wdir, file_1)
+    path_2 = file_2 if os.path.isabs(
+        file_2) else os.path.join(current_wdir, file_2)
 
-    if not (os.path.exists(pop_path) and os.path.exists(rail_path)):
+    if not (os.path.exists(path_1) and os.path.exists(path_2)):
         raise FileNotFoundError('one of the two files does not exist')
 
-    year_of_inquiry = "2004"
-    country_key = "Country Code"
-
-    with open(pop_path, 'r', newline='') as csvfile:
+    with open(path_1, 'r', newline='') as csvfile:
 
         reader = csv.reader(csvfile)
 
-        pop_data = dictify(reader, 4, key=country_key, val1=year_of_inquiry)
+        pop_data = dictify(reader, 4, key=key, val1=val1)
 
-    with open(rail_path, 'r', newline='') as csvfile:
+    with open(path_2, 'r', newline='') as csvfile:
 
         reader = csv.reader(csvfile)
 
-        rail_data = dictify(reader, 4, key=country_key, val1=year_of_inquiry)
+        rail_data = dictify(reader, 4, key=key, val1=val1)
 
     countries = set(pop_data.keys()).intersection(rail_data.keys())
     mod_countries = {}
@@ -71,16 +65,16 @@ def main(sorting_function):
 
 if __name__ == "__main__":
 
-    mod_countries = {key: round(item*1000, 3) for key, item in main(
-        lambda x, y: float(y)/float(x) if y != '0' and x != '0' else 0).items()}
+    pop_filename = "API_SP.POP.TOTL_DS2_en_csv_v2_3603750.csv"
+    rail_filename = "API_IS.RRS.TOTL.KM_DS2_en_csv_v2_3479929.csv"
 
-    highest = 0
-    country_code = 'NO'
+    year_of_inquiry = "2004"
+    country_key = "Country Code"
 
-    for key, item in mod_countries.items():
+    mod_countries = main(lambda x, y: round(1000*float(y)/float(x), 3)
+                         if y != '0' and x != '0' else 0, pop_filename, rail_filename, country_key, year_of_inquiry)
 
-        if item > highest:
-            highest = item
-            country_code = key
+    countries = list(mod_countries.keys())
+    countries.sort(key=lambda x: mod_countries[x], reverse=True)
 
-    print(country_code, highest)
+    print(countries[0], mod_countries[countries[0]])
