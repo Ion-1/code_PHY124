@@ -72,9 +72,6 @@ for key, item in similarity.items():
     # if max((weighting_m*abs(np.log(similarity_m[key])), weighting_s*abs(np.log(similarity_s[key])))) > abs(np.log(limit)):
     #     continue
 
-    # if max((weighting_m*abs(1-similarity_m[key]), weighting_s*abs(1-similarity_s[key]))) > abs(limit):
-    #     continue
-
     counter += 1
     print(f"""Planet: {key}; \nTot. Change: {similarity[key]:.3f}; \nS.Sim: {similarity_s[key]:.3f}; Radius: {data[key][0]}; Axis: {
           data[key][1]}; Teff: {round(float(data[key][2])/5800, 3)}; \nMass: {round(320*float(data[key][3]), 3)};""", end="\n\n")
@@ -86,9 +83,8 @@ x, y = zip(*[(similarity_m[key], similarity_s[key])
            for key in similarity.keys()])
 
 fig, ax = plt.subplots()
-del ax
 
-plotter(fig, x, y, y_lim=[0, 100], x_lim=[0, 60])
+plotter(fig, ax, x, y, y_lim=[0, 100], x_lim=[0, 60])
 
 for key, item in {key: similarity[key] for key in ["GJ 667 C c", "Kepler-69 c", "LHS 1140 b", "TOI-700 d", "TRAPPIST-1 e", "GJ 273 b"]}.items():
 

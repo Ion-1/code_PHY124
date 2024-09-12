@@ -8,7 +8,7 @@ import os
 import csv
 
 
-def dictify(reader, header_index, zero_value='0', **kwargs):
+def dictify(reader, header_index, zero_value='0', filter_=lambda index, row: True, **kwargs):
 
     indices = {}
     data = {}
@@ -21,6 +21,9 @@ def dictify(reader, header_index, zero_value='0', **kwargs):
         if index == header_index:
             for key, item in kwargs.items():
                 indices[key] = row.index(item)
+            continue
+        
+        if not filter_(index, row):
             continue
 
         data[row[indices['key']]] = [

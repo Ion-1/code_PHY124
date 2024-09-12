@@ -71,11 +71,8 @@ def bernoulli_num_loo(n, full_list=False):
         Else: fractions.Fraction representing bernoulli number n.
     """
     b_list, factorials = [fr(1)], [1, 1]
-    counter = 0
 
-    while counter < n:
-
-        counter += 1
+    for counter in range(1, n+1):
 
         factorials.append((counter + 1) * factorials[counter])
 
