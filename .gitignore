@@ -161,3 +161,4 @@ cython_debug/
 
 scientific_graphs/V-Dem-CY-Core-v14_csv/V-Dem-CY-Core-v14.csv
 **/nppBackup
+**/tmp_*.*

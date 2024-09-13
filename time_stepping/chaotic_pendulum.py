@@ -105,7 +105,7 @@ class Drawer:
                     filled_array = np.concatenate(
                         (
                             filled_array,
-                            draw_circle(self.wheel_center[0], self.wheel_center[1], x, y), 
+                            draw_circle(self.wheel_center[0], self.wheel_center[1], x, y),
                         ), axis = 0
                     )
                     if self.dots_per_cm * self.wheel_radius - thickness - 0.5 <= rad:
@@ -145,7 +145,7 @@ class Drawer:
             else:
                 flip = True
                 new_args = [args[1], args[0], dy, dx, ystep, xstep]
-                
+
             if len(args) == 5:
                 match xstep + 4 * ystep:
                     case -5: pystep = -1; pxstep =  1

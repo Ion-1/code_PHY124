@@ -9,15 +9,12 @@ import os
 import sys
 import logging
 import multiprocessing
-# import numpy as np
-import cupy as np
-# import vispy
+import numpy as np
+# import cupy as cp
 import functools
 import time
 import pickle
-# import imageio
 import imageio.v3 as iio
-from pygifsicle import optimize
 # import matplotlib.pyplot as plt
 # from PIL import Image
 # from vispy import app, scene
@@ -342,7 +339,7 @@ class PendulumGenerator:
         self.logger.info(f"Initializing color gradient.")
         start = time.perf_counter()
         if (not os.path.isfile("gradientc.bytes")) or self.redo_gradient:
-            self.logger.warning("Regenerating the gradient file.")
+            self.logger.info("Regenerating the gradient file.")
             self.colors = np.array(
                 [self.gradgen.color(ratio) for ratio in np.linspace(0, 1, self.num_colors + 1)]
             )
@@ -442,8 +439,8 @@ class PendulumGenerator:
 
         start = time.perf_counter()
         im_array = self.colors[
-            (np.arctan(self.pt_array/(self.frame_count**0.55)) * self.num_colors /
-             (np.max(np.arctan(self.pt_array/(self.frame_count**0.55))))).astype(int)
+            (np.arctan(self.pt_array / (self.frame_count ** 0.55)) * self.num_colors /
+             (np.max(np.arctan(self.pt_array / (self.frame_count ** 0.55))))).astype(int)
         ]
         self.max_vals.append(np.median(self.pt_array[self.pt_array != 0]))
         # im_array = self.colors[
@@ -477,7 +474,7 @@ if __name__ == "__main__":
         drawer=Drawer,
         solver=BasicSolverLeapfrog,
         gradgen=Gradient,
-        output_name = "coolgif2",
+        output_name = "tmp_coolgif",
         frames=5000,
     )
     pendulum.run()

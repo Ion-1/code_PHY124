@@ -5,7 +5,6 @@ Created on Thu May 23 14:01:39 2024.
 @author: Ion-1
 """
 import numpy as np
-import cupy as cp
 import timeit
 import matplotlib.pyplot as plt
 
@@ -22,7 +21,7 @@ def fft_recursive(s):
     return np.concatenate((s_even+s_odd, s_even-s_odd))
 
 
-def fft_iterative_numpy(s):
+def fft_iterative(s):
     N = len(s)
     H = 1
     bigH = 2
@@ -43,7 +42,7 @@ if __name__ == "__main__":
     fig, (ax1, ax2) = plt.subplots(2, 1)
     ini_vals = [5, 1, 1, 2, 9, 8, 1204, 8]
     result1 = fft_recursive(ini_vals)
-    result2 = fft_iterative_numpy(ini_vals)
+    result2 = fft_iterative(ini_vals)
     print(result1[-1])
     print(result1)
     print(result2[-1])
@@ -53,7 +52,7 @@ if __name__ == "__main__":
     timings_i = []
     for i in range(1, 17):
         a = timeit.timeit(lambda: fft_recursive(ini_vals*2**(i)), number=1)
-        b = timeit.timeit(lambda: fft_iterative_numpy(ini_vals*2**(i)), number=1)
+        b = timeit.timeit(lambda: fft_iterative(ini_vals * 2 ** (i)), number=1)
         print(f"Recursive with list size {2**(i+3)}:", a)
         print(f"Numpy with list size {2**(i+3)}:", b)
         x_vals.append(2**(i+3))
